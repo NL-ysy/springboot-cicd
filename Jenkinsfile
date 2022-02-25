@@ -22,7 +22,7 @@ pipeline {
         --version-label ${BUILD_TAG} --source-bundle S3Bucket="springboot-cicd-nlyung",S3Key="application.war"' 
         sh 'aws elasticbeanstalk update-environment --region us-west-1 --environment-name Springcicdnlyung-env 
         --version-label ${BUILD_TAG}' 
-            
+        slackSend (color: '#FF0000', message: "FAIED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
       }
     }
 
